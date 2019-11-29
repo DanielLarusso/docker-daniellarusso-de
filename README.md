@@ -1,2 +1,2 @@
 # docker-webserver
-A boilerplate docker-compose file
+A boilerplate webserver using nginx reverse proxy and ovip/apache-php docker image
