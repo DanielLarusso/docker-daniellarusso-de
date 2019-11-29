@@ -1,0 +1,61 @@
+# use version 3.7 of the docker compose syntax
+version: '3.7'
+
+# define services
+services:
+
+  # name of the service
+  webserver:
+
+    # pass a hostname to the container (from .env file)
+    hostname: ${HOSTNAME}
+
+    # a name for easier reference
+    image: ovip/apache-php:7.3
+
+    # passsome environment variables (from .env file)
+    environment:
+      VIRTUAL_HOST: ${HOSTNAME}
+      VIRTUAL_PORT: ${PORT}
+
+    # expose the port(s) of the application (from .env file)
+    expose:
+      - ${PORT}
+
+    # volumes are like shared folders
+    # container will see your local code changes
+    volumes:
+      - ./data:/var/www/html
+
+    # first load the 'database' service
+    depends_on:
+      - database
+
+    # make 'database' a known service/host inside of 'webserver'
+    # use this to make a mysql connection to host 'database'
+    links:
+      - database
+
+  # name of the service
+  database:
+
+    # use a default image
+    image: mysql:5.7
+
+    # again, port mapping
+    # uncomment this if you want to connect db from your hostsystem
+    #ports:
+      #- 3306:3306
+
+    # the mysql image uses these to create database and users
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+# add containers to the nginx-proxy network
+networks:
+  default:
+    external:
+      name: nginx-proxy
