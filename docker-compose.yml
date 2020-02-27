@@ -11,7 +11,7 @@ services:
     hostname: ${HTTPD_HOSTNAME}
 
     # a name for easier reference
-    image: ovip/apache-php:7.3
+    image: ovip/apache-php:7.4
 
     # passsome environment variables (from .env file)
     environment:
