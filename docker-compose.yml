@@ -8,19 +8,19 @@ services:
   webserver:
 
     # pass a hostname to the container (from .env file)
-    hostname: ${HOSTNAME}
+    hostname: ${HTTPD_HOSTNAME}
 
     # a name for easier reference
     image: ovip/apache-php:7.3
 
     # passsome environment variables (from .env file)
     environment:
-      VIRTUAL_HOST: ${HOSTNAME}
-      VIRTUAL_PORT: ${PORT}
+      VIRTUAL_HOST: ${HTTPD_HOSTNAME}
+      VIRTUAL_PORT: ${HTTPD_HOSTNAME}
 
     # expose the port(s) of the application (from .env file)
     expose:
-      - ${PORT}
+      - ${HTTPD_HOSTNAME}
 
     # volumes are like shared folders
     # container will see your local code changes
