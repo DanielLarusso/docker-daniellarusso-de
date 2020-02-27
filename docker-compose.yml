@@ -17,6 +17,7 @@ services:
     environment:
       VIRTUAL_HOST: ${HTTPD_HOSTNAME}
       VIRTUAL_PORT: ${HTTPD_PORT}
+      DOCUMENT_ROOT: ${HTTPD_DOCUMENT_ROOT}
 
     # expose the port(s) of the application (from .env file)
     expose:
