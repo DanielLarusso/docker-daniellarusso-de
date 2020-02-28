@@ -10,8 +10,10 @@ services:
     # pass a hostname to the container (from .env file)
     hostname: ${HTTPD_HOSTNAME}
 
-    # a name for easier reference
-    image: ovip/apache-php:7.4
+    # define build
+    build:
+      dockerfile: Dockerfile
+      context: .
 
     # passsome environment variables (from .env file)
     environment:
@@ -22,11 +24,6 @@ services:
     # expose the port(s) of the application (from .env file)
     expose:
       - ${HTTPD_PORT}
-
-    # volumes are like shared folders
-    # container will see your local code changes
-    volumes:
-      - ./data:/var/www/html
 
     # first load the 'database' service
     depends_on:
