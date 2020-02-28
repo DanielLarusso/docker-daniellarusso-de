@@ -4,5 +4,5 @@ FROM ovip/apache-php:7.4
 COPY ${pwd}/data/ /var/www/html/
 
 RUN chmod 0755 bin/console \
-    && chown -R www-data:www-data /var/www \
-    && composer install --ignore-platform-reqs
+    && composer install --ignore-platform-reqs \
+    && chown -R www-data:www-data /var/www
