@@ -41,7 +41,7 @@ services:
   database:
 
     # use a default image
-    image: mysql:5.7
+    image: mysql:8
 
     # again, port mapping
     # uncomment this if you want to connect db from your hostsystem
