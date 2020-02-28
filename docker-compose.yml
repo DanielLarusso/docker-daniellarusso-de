@@ -17,6 +17,8 @@ services:
 
     # passsome environment variables (from .env file)
     environment:
+      LETSENCRYPT_HOST: ${HTTPD_HOSTNAME}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
       VIRTUAL_HOST: ${HTTPD_HOSTNAME}
       VIRTUAL_PORT: ${HTTPD_PORT}
       DOCUMENT_ROOT: ${HTTPD_DOCUMENT_ROOT}
