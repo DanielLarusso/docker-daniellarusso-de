@@ -15,6 +15,10 @@ services:
       dockerfile: Dockerfile
       context: .
 
+    # make the webserver data persistent
+    volumes:
+    - ./data/webserver:/var/www/html
+
     # passsome environment variables (from .env file)
     environment:
       LETSENCRYPT_HOST: ${HTTPD_HOSTNAME}
@@ -41,6 +45,10 @@ services:
 
     # use a default image
     image: mysql:8
+
+    # make the database persistent
+    volumes:
+    - ./data/database:/var/lib/mysql
 
     # again, port mapping
     # uncomment this if you want to connect db from your hostsystem
